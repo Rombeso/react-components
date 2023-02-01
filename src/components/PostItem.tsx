@@ -13,7 +13,7 @@ const PostItem = (props: PropsType) => {
     return (
         <div className={'post'}>
             <div>
-            <strong>{props.number}. {title}</strong>
+            <strong>{props.post.id}. {title}</strong>
                <p>{body}</p>
             </div>
             <div className={'post__btns'}>
