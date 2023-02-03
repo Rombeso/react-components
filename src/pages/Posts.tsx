@@ -13,6 +13,7 @@ import MyModal from "../UI/MyModal/MyModal";
 import PostFilter from "../components/PostFilter";
 import {useObserver} from "../hooks/useObserver";
 import {log} from "util";
+import Select from '../UI/select/select';
 
 
 export type PostType = {
@@ -24,7 +25,7 @@ export type PostType = {
 
 export type OptionSelectType = {
     title: string;
-    value: string;
+    value: string | number;
 }
 
 export type FilterType = {
@@ -53,12 +54,12 @@ function Posts() {
     const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
     console.log(page, totalPages)
     useObserver(lastElement, page < totalPages, isPostLoading, () => {
-        setPage( page +1)
+        setPage(page + 1)
     })
 
     useEffect(() => {
         fetchPosts()
-    }, [page])
+    }, [page, limit])
 
     const createPost = (newPost: PostType) => {
         setPosts([...posts, newPost])
@@ -78,6 +79,16 @@ function Posts() {
             <MyModal visible={modal} setVisible={setModal}><PostForm createPost={createPost}/></MyModal>
             <hr style={{margin: '15px 0'}}/>
             <PostFilter filter={filter} setFilter={setFilter}/>
+            <Select
+                options={[
+                    {value: 10, title: '10'},
+                    {value: 5, title: '5'},
+                    {value: 15, title: '15'},
+                    {value: -1, title: 'Все'},
+                ]}
+                defaultSelect='Колличество эл-тов на странице'
+                changedSelect={value => setLimit(value)}
+            />
             {postError &&
                 <h1>{`Произошла ошибка: ${postError}`}</h1>
             }

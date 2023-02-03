@@ -1,10 +1,11 @@
 import React from 'react';
-import {OptionSelectType} from "../../App";
+import {OptionSelectType} from "../../pages/Posts";
+
 
 type PropsType = {
     options: OptionSelectType[],
     defaultSelect: string,
-    changedSelect: (value: string) => void
+    changedSelect: (value: string | number) => void
 }
 
 const Select = ({options, defaultSelect, changedSelect}: PropsType) => {
