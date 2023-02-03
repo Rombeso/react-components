@@ -4,17 +4,33 @@ import Posts from "./pages/Posts";
 import Navbar from "./UI/Navbar/Navbar";
 import Page404 from "./pages/Page404";
 import AppRouter from "./components/AppRouter";
+import {AuthContext} from "./context";
+import {useEffect, useState} from "react";
 
 
 function App() {
+    const [isAuth, setIsAuth] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        if (localStorage.getItem('auth')) {
+            setIsAuth(true)
+        }
+        setIsLoading(false)
+    }, [])
+
     return (
-        // <div>
-        //     <Posts/>
-        // </div>
-        <BrowserRouter>
-            <Navbar/>
-            <AppRouter/>
-        </BrowserRouter>
+        <AuthContext.Provider value={{
+            isAuth,
+            setIsAuth,
+            isLoading,
+        }}>
+            <BrowserRouter>
+                <Navbar/>
+                <AppRouter/>
+            </BrowserRouter>
+        </AuthContext.Provider>
+
     )
 }
 
