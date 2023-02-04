@@ -3,9 +3,11 @@ import Page404 from "../pages/Page404";
 import PostIdPages from "../pages/PostIdPages";
 import Posts from "../pages/Posts";
 import Login from "../pages/Login";
+import Hooks from "../pages/Hooks";
 
 export const privatRoutes = [
     {path: '/about', element: About},
+    {path: '/hooks', element: Hooks},
     {path: '/posts', element: Posts},
     {path: '/posts/:id', element: PostIdPages},
     {path: '/', element: Posts},

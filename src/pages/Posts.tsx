@@ -50,9 +50,7 @@ function Posts() {
     })
 
     const lastElement = useRef()
-    console.log(lastElement)
     const sortedAndSearchPost = usePosts(posts, filter.sort, filter.query)
-    console.log(page, totalPages)
     useObserver(lastElement, page < totalPages, isPostLoading, () => {
         setPage(page + 1)
     })
@@ -80,6 +78,7 @@ function Posts() {
             <hr style={{margin: '15px 0'}}/>
             <PostFilter filter={filter} setFilter={setFilter}/>
             <Select
+                value={limit}
                 options={[
                     {value: 10, title: '10'},
                     {value: 5, title: '5'},
