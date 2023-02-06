@@ -4,7 +4,7 @@ import cl from './MyModal.module.css'
 type PropsType = {
     visible: boolean;
     setVisible: (visible: boolean) => void;
-    children: any;
+    children: React.ReactElement | React.ReactNode;
 }
 
 const MyModal = (props: PropsType) => {
